@@ -3,17 +3,14 @@ package com.ada.foodclip.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Collection;
-import java.util.List;
-
 @Table(name = "users")
 @Getter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class User
-{
+public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", updatable = false)
@@ -28,14 +25,6 @@ public class User
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "passwordCheck", nullable = false)
+    @Transient // 데이터베이스에 저장되지 않도록 설정
     private String passwordCheck;
-
-    @Builder
-    public User(Long id, String username, String password, String auth) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
-
 }
