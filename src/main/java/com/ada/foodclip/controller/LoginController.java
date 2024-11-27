@@ -27,7 +27,7 @@ public class LoginController {
             model.addAttribute("message", "Welcome, " + username + "!");
             return "welcome"; // 로그인 성공 페이지로 이동
         } else {
-            model.addAttribute("error", "Invalid username or password");
+            model.addAttribute("error", "유저명이 틀리거나, 비밀번호가 일치하지 않습니다.");
             return "login"; // 로그인 페이지로 다시 이동
         }
     }
