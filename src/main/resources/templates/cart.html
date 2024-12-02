@@ -35,12 +35,12 @@
 <h3>상품 추가</h3>
 <form th:action="@{/cart/add}" method="post">
   <input type="hidden" name="userId" th:value="${userId}">
-  <label for="productName">상품명:</label>
-  <input type="text" id="productName" name="productName" required>
-  <label for="detail">상세 설명:</label>
-  <input type="text" id="detail" name="detail" required>
-  <label for="price">가격:</label>
-  <input type="number" id="price" name="price" step="0.01" required>
+  <label for="productId">제품 선택:</label>
+  <select id="productId" name="productId" required>
+    <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+  </select>
+  <label for="quantity">수량:</label>
+  <input type="number" id="quantity" name="quantity" min="1" required>
   <button type="submit">추가</button>
 </form>
 </body>

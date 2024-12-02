@@ -1,13 +1,13 @@
 package com.ada.foodclip.service;
 
 import com.ada.foodclip.model.CartItem;
+import com.ada.foodclip.model.Product;
+import com.ada.foodclip.model.User;
 import com.ada.foodclip.repository.CartItemRepo;
+import com.ada.foodclip.repository.ProductRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 
 import java.util.List;
 
@@ -15,12 +15,17 @@ import java.util.List;
 @Service
 public class CartService {
     private final CartItemRepo cartItemRepo;
+    private final ProductRepo productRepo;
 
-    @PersistenceContext
-    private EntityManager entityManager;
-
-    public CartItem addItemToCart(CartItem item) {
-        return cartItemRepo.save(item); // 장바구니에 추가
+    public CartItem addItemToCart(Long userId, Long productId, int quantity) {
+        Product product = productRepo.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Product not found: " + productId));
+        CartItem item = CartItem.builder()
+                .user(User.builder().id(userId).build())
+                .product(product)
+                .quantity(quantity)
+                .build();
+        return cartItemRepo.save(item);
     }
 
     public List<CartItem> getCartItems(Long userId) {
@@ -30,16 +35,5 @@ public class CartService {
     @Transactional
     public void removeItemFromCart(Long itemId) {
         cartItemRepo.deleteById(itemId); // 장바구니에서 아이템 삭제
-        resetAutoIncrementIfEmpty();    // 장바구니가 비었으면 AUTO_INCREMENT 초기화
-    }
-
-    @Transactional
-    public void resetAutoIncrementIfEmpty() {
-        // 테이블이 비었는지 확인
-        long count = cartItemRepo.count();
-        if (count == 0) {
-            // AUTO_INCREMENT 초기화 (MySQL용 쿼리)
-            entityManager.createNativeQuery("ALTER TABLE cart_items AUTO_INCREMENT = 1").executeUpdate();
-        }
     }
 }

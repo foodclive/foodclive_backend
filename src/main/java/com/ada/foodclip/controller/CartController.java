@@ -26,18 +26,12 @@ public class CartController {
 
     @PostMapping("/add")
     public String addToCart(@RequestParam("userId") Long userId,
-                            @RequestParam("productName") String productName,
-                            @RequestParam("detail") String detail,
-                            @RequestParam("price") double price) {
-        CartItem item = CartItem.builder()
-                .user(User.builder().id(userId).build())
-                .productName(productName)
-                .detail(detail)
-                .price(price)
-                .build();
-        cartService.addItemToCart(item);
+                            @RequestParam("productId") Long productId,
+                            @RequestParam("quantity") int quantity) {
+        cartService.addItemToCart(userId, productId, quantity);
         return "redirect:/cart?userId=" + userId;
     }
+
 
     @PostMapping("/remove")
     public String removeFromCart(@RequestParam("itemId") Long itemId,

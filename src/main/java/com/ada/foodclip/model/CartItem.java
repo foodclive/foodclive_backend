@@ -19,12 +19,10 @@ public class CartItem {
     @JoinColumn(name = "user_id", nullable = false)
     private User user; // User랑 연결
 
-    @Column(name = "product_name", nullable = false)
-    private String productName; // 제품명
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product; // Product와 연결
 
-    @Column(name = "detail", nullable = true) // 상세 설명 필드
-    private String detail; // 상세 설명?
-
-    @Column(name = "price", nullable = false)
-    private double price; // 가격
+    @Column(name = "quantity", nullable = false)
+    private int quantity; // 수량
 }

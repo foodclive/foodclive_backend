@@ -27,20 +27,12 @@ public class WishlistController {
     }
 
     @PostMapping("/add")
-    public String addToWishlist(@RequestParam Long userId,
-                                @RequestParam String productName,
-                                @RequestParam double price,
-                                @RequestParam Long productId) {
-        User user = userService.findById(userId); // User 객체 조회
-        WishlistItem item = WishlistItem.builder()
-                .user(user) // User 객체 설정
-                .productName(productName)
-                .price(price)
-                .productId(productId)
-                .build();
-        wishlistService.addItemToWishlist(item);
+    public String addToWishlist(@RequestParam("userId") Long userId,
+                                @RequestParam("productId") Long productId) {
+        wishlistService.addItemToWishlist(userId, productId);
         return "redirect:/wishlist?userId=" + userId;
     }
+
 
     @PostMapping("/remove/{itemId}")
     public String removeFromWishlist(@PathVariable Long itemId, @RequestParam Long userId) {
