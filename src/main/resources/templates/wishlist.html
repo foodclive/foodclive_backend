@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist</title>
+</head>
+<body>
+<h1>찜 목록</h1>
+
+<!-- 찜 목록 -->
+<div>
+    <h2>내 찜 목록</h2>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>제품 이름</th>
+            <th>가격</th>
+            <th>작업</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="item : ${wishlistItems}">
+            <td th:text="${item.productName}">제품 이름</td>
+            <td th:text="${item.price}">가격</td>
+            <td>
+                <form th:action="@{/wishlist/remove/{itemId}(itemId=${item.id})}" method="post">
+                    <button type="submit">삭제</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- 찜 추가 -->
+<div>
+    <h2>찜 추가</h2>
+    <form th:action="@{/wishlist/add}" method="post">
+        <label for="productName">제품 이름:</label>
+        <input type="text" id="productName" name="productName" placeholder="제품 이름" required>
+        <br>
+        <label for="price">가격:</label>
+        <input type="number" id="price" name="price" placeholder="가격" required>
+        <br>
+        <label for="productId">상품 ID:</label>
+        <input type="number" id="productId" name="productId" placeholder="상품 ID" required>
+        <br>
+        <input type="hidden" name="userId" th:value="${userId}">
+        <button type="submit">찜하기</button>
+    </form>
+</div>
+</body>
+</html>
