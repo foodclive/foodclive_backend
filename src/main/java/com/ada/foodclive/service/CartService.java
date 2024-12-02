@@ -1,10 +1,10 @@
-package com.ada.foodclip.service;
+package com.ada.foodclive.service;
 
-import com.ada.foodclip.model.CartItem;
-import com.ada.foodclip.model.Product;
-import com.ada.foodclip.model.User;
-import com.ada.foodclip.repository.CartItemRepo;
-import com.ada.foodclip.repository.ProductRepo;
+import com.ada.foodclive.model.CartItem;
+import com.ada.foodclive.model.Product;
+import com.ada.foodclive.model.User;
+import com.ada.foodclive.repository.CartItemRepo;
+import com.ada.foodclive.repository.ProductRepo;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

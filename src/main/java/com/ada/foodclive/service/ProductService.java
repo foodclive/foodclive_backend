@@ -1,7 +1,7 @@
-package com.ada.foodclip.service;
+package com.ada.foodclive.service;
 
-import com.ada.foodclip.model.Product;
-import com.ada.foodclip.repository.ProductRepo;
+import com.ada.foodclive.model.Product;
+import com.ada.foodclive.repository.ProductRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

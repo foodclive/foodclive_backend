@@ -1,4 +1,4 @@
-package com.ada.foodclip;
+package com.ada.foodclive;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,10 +1,10 @@
-package com.ada.foodclip.service;
+package com.ada.foodclive.service;
 
-import com.ada.foodclip.model.Product;
-import com.ada.foodclip.model.User;
-import com.ada.foodclip.model.WishlistItem;
-import com.ada.foodclip.repository.ProductRepo;
-import com.ada.foodclip.repository.WishlistRepo;
+import com.ada.foodclive.model.Product;
+import com.ada.foodclive.model.User;
+import com.ada.foodclive.model.WishlistItem;
+import com.ada.foodclive.repository.ProductRepo;
+import com.ada.foodclive.repository.WishlistRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package com.ada.foodclip.service;
+package com.ada.foodclive.service;
 
-import com.ada.foodclip.model.User;
-import com.ada.foodclip.repository.UserRepo;
+import com.ada.foodclive.model.User;
+import com.ada.foodclive.repository.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
