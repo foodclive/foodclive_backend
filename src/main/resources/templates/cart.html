@@ -18,9 +18,9 @@
   </thead>
   <tbody>
   <tr th:each="item : ${cartItems}">
-    <td th:text="${item.productName}"></td>
-    <td th:text="${item.detail}"></td>
-    <td th:text="${item.price}"></td>
+    <td th:text="${item.product.name}"></td> <!-- 상품명 -->
+    <td th:text="${item.product.description}"></td> <!-- 상세 설명 -->
+    <td th:text="${item.product.price}"></td> <!-- 가격 -->
     <td>
       <form th:action="@{/cart/remove}" method="post">
         <input type="hidden" name="itemId" th:value="${item.id}">

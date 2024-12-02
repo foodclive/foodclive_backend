@@ -17,7 +17,7 @@ public class CartService {
     private final CartItemRepo cartItemRepo;
     private final ProductRepo productRepo;
 
-    public CartItem addItemToCart(Long userId, Long productId, int quantity) {
+    public void addItemToCart(Long userId, Long productId, int quantity) {
         Product product = productRepo.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Product not found: " + productId));
         CartItem item = CartItem.builder()
@@ -25,7 +25,7 @@ public class CartService {
                 .product(product)
                 .quantity(quantity)
                 .build();
-        return cartItemRepo.save(item);
+        cartItemRepo.save(item);
     }
 
     public List<CartItem> getCartItems(Long userId) {
