@@ -1,8 +1,8 @@
-package com.ada.foodclip.controller;
+package com.ada.foodclive.controller;
 
-import com.ada.foodclip.model.CartItem;
-import com.ada.foodclip.model.User;
-import com.ada.foodclip.service.CartService;
+import com.ada.foodclive.model.CartItem;
+import com.ada.foodclive.model.User;
+import com.ada.foodclive.service.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

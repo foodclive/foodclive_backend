@@ -1,6 +1,6 @@
-package com.ada.foodclip.repository;
+package com.ada.foodclive.repository;
 
-import com.ada.foodclip.model.WishlistItem;
+import com.ada.foodclive.model.WishlistItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

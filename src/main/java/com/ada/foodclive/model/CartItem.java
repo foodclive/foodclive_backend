@@ -1,4 +1,4 @@
-package com.ada.foodclip.model;
+package com.ada.foodclive.model;
 
 import jakarta.persistence.*;
 import lombok.*;

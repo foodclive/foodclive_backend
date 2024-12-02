@@ -1,9 +1,9 @@
-package com.ada.foodclip.controller;
+package com.ada.foodclive.controller;
 
-import com.ada.foodclip.model.User;
-import com.ada.foodclip.model.WishlistItem;
-import com.ada.foodclip.service.UserService;
-import com.ada.foodclip.service.WishlistService;
+import com.ada.foodclive.model.User;
+import com.ada.foodclive.model.WishlistItem;
+import com.ada.foodclive.service.UserService;
+import com.ada.foodclive.service.WishlistService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

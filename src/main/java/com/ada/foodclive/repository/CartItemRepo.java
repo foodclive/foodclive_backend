@@ -1,6 +1,6 @@
-package com.ada.foodclip.repository;
+package com.ada.foodclive.repository;
 
-import com.ada.foodclip.model.CartItem;
+import com.ada.foodclive.model.CartItem;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,7 +1,7 @@
-package com.ada.foodclip.controller;
+package com.ada.foodclive.controller;
 
-import com.ada.foodclip.model.Product;
-import com.ada.foodclip.service.ProductService;
+import com.ada.foodclive.model.Product;
+import com.ada.foodclive.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
