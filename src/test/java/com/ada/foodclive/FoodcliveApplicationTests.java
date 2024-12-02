@@ -1,4 +1,4 @@
-package com.ada.foodclip;
+package com.ada.foodclive;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
