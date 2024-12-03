@@ -31,4 +31,14 @@ public class UserService {
         return userRepo.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다. ID: " + id));
     }
+
+    // 추가됨: 새로운 건강 정보를 저장하거나 업데이트하는 메서드
+    public void updateHealthStatus(Long userId, String healthStatus) {
+        User user = userRepo.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found: " + userId));
+        user.setHealthStatus(healthStatus);
+        user.setLastUpdated(LocalDateTime.now()); // 업데이트 시간 기록
+        userRepo.save(user);
+    }
+
 }

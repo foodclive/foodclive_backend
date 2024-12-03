@@ -2,9 +2,11 @@ package com.ada.foodclive.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.time.LocalDateTime;
 
 @Table(name = "users")
 @Getter
+@Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -25,6 +27,13 @@ public class User {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Transient // 데이터베이스에 저장되지 않도록 설정
+    @Transient
     private String passwordCheck;
+
+    // 유저 건강 정보 저장 컴럼을 위해 만듬
+    @Column(name = "health_status", length = 500) // 길이를 지정
+    private String healthStatus; // 유저 건강 정보
+
+    @Column(name = "last_updated")
+    private LocalDateTime lastUpdated; // 건강 정보 마지막 업데이트 시간
 }
