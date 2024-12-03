@@ -27,7 +27,7 @@ public class WishlistService {
     }
 
     public List<WishlistItem> getWishlistItems(Long userId) {
-        return wishlistRepo.findByUserId(userId);
+        return wishlistRepo.findByUserId(userId); // 찜 목록 검색
     }
 
     public void removeItemFromWishlist(Long itemId) {

@@ -21,10 +21,12 @@
         </thead>
         <tbody>
         <tr th:each="item : ${wishlistItems}">
-            <td th:text="${item.productName}">제품 이름</td>
-            <td th:text="${item.price}">가격</td>
+            <td th:text="${item.product.name}">제품 이름</td> <!-- 제품 이름 표시 -->
+            <td th:text="${item.product.description}">상세 설명</td> <!-- 제품 설명 -->
+            <td th:text="${item.product.price}">가격</td> <!-- 제품 가격 -->
             <td>
                 <form th:action="@{/wishlist/remove/{itemId}(itemId=${item.id})}" method="post">
+                    <input type="hidden" name="userId" th:value="${userId}">
                     <button type="submit">삭제</button>
                 </form>
             </td>
@@ -40,7 +42,7 @@
         <input type="hidden" name="userId" th:value="${userId}">
         <label for="productId">제품 선택:</label>
         <select id="productId" name="productId" required>
-            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}"></option>
+            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}">제품 이름</option>
         </select>
         <button type="submit">찜하기</button>
     </form>
