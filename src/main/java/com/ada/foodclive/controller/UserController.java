@@ -28,18 +28,4 @@ public class UserController
         userService.updateHealthStatus(userId, healthStatus);
         return ResponseEntity.ok("Health status updated successfully");
     }
-
-    // 전체 유저 리스트 조회 (선택 사항)
-    @GetMapping
-    public ResponseEntity<Iterable<User>> getAllUsers() {
-        Iterable<User> users = userService.findAllUsers();
-        return ResponseEntity.ok(users);
-    }
-
-    // 새로운 유저 등록 (선택 사항)
-    @PostMapping
-    public ResponseEntity<String> createUser(@RequestBody User user) {
-        userService.save(user);
-        return ResponseEntity.ok("User created successfully");
-    }
 }
