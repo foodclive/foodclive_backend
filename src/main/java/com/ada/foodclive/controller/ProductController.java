@@ -15,31 +15,28 @@ import java.util.List;
 public class ProductController {
     private final ProductService productService;
 
-    // 모든 제품 조회
     @GetMapping
-    public String getAllProducts(Model model) {
+    public String viewProducts(Model model) {
         List<Product> products = productService.getAllProducts();
         model.addAttribute("products", products);
-        return "product-list"; // 제품 리스트를 보여줄 HTML 페이지
+        return "product-list";
     }
 
-    // 제품 추가 페이지
     @GetMapping("/add")
-    public String addProductPage() {
-        return "product-add"; // 제품 추가 HTML 페이지
+    public String addProductPage(Model model) {
+        model.addAttribute("product", new Product());
+        return "product-add";
     }
 
-    // 제품 추가 처리
     @PostMapping("/add")
-    public String addProduct(@RequestParam String name,
-                             @RequestParam String description,
-                             @RequestParam double price) {
-        Product product = Product.builder()
-                .name(name)
-                .description(description)
-                .price(price)
-                .build();
+    public String addProduct(@ModelAttribute Product product) {
         productService.addProduct(product);
+        return "redirect:/products";
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable Long id) {
+        productService.deleteProduct(id);
         return "redirect:/products";
     }
 }

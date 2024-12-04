@@ -18,9 +18,12 @@ public class Product {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "description", nullable = true)
+    @Column(name = "description")
     private String description;
 
     @Column(name = "price", nullable = false)
     private double price;
+
+    @Column(name = "hashtags", length = 255) // 해시태그 저장
+    private String hashtags;
 }

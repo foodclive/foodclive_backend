@@ -36,4 +36,5 @@ public class User {
 
     @Column(name = "last_updated")
     private LocalDateTime lastUpdated; // 건강 정보 마지막 업데이트 시간
+
 }

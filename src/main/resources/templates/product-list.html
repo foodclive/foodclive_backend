@@ -1,7 +1,5 @@
-<!--제품 리스트를 보여주는 페이지-->
-
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>제품 리스트</title>
@@ -14,16 +12,23 @@
         <th>제품명</th>
         <th>설명</th>
         <th>가격</th>
+        <th>작업</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="product : ${products}">
-        <td th:text="${product.name}"></td>
-        <td th:text="${product.description}"></td>
-        <td th:text="${product.price}"></td>
+        <td th:text="${product.name}">제품명</td>
+        <td th:text="${product.description}">설명</td>
+        <td th:text="${product.price}">가격</td>
+        <td>
+            <form th:action="@{/products/delete/{id}(id=${product.id})}" method="post">
+                <button type="submit">삭제</button>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
+
 <a th:href="@{/products/add}">제품 추가</a>
 </body>
 </html>

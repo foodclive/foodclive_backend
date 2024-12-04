@@ -15,14 +15,14 @@ public class CartItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE) // Cascade 설정
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user; // User랑 연결
+    private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product; // Product와 연결
-
-    @Column(name = "quantity", nullable = false)
-    private int quantity; // 수량
+    @Column(nullable = false)
+    private int quantity;
 }

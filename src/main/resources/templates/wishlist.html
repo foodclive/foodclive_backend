@@ -3,30 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wishlist</title>
+    <title>찜 목록 테스트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+        }
+        .button-group button {
+            margin-right: 5px;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        table {
+            width: 80%;
+            margin: 0 auto;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            font-size: 14px;
+        }
+        .form-container {
+            margin-top: 20px;
+            width: 80%;
+            margin: 0 auto;
+        }
+        select, button {
+            padding: 5px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
 <h1>찜 목록</h1>
 
-<!-- 찜 목록 -->
+<!-- 찜 목록 타입 선택 -->
+<div class="button-group">
+    <h2>찜 목록 타입 선택</h2>
+    <form th:action="@{/wishlist}" method="get" style="display: inline;">
+        <input type="hidden" name="userId" th:value="${userId}">
+        <input type="hidden" name="type" value="DIET">
+        <button type="submit" th:classappend="${type == 'DIET'} ? 'selected' : ''">식단</button>
+    </form>
+    <form th:action="@{/wishlist}" method="get" style="display: inline;">
+        <input type="hidden" name="userId" th:value="${userId}">
+        <input type="hidden" name="type" value="RECIPE">
+        <button type="submit" th:classappend="${type == 'RECIPE'} ? 'selected' : ''">레시피</button>
+    </form>
+    <form th:action="@{/wishlist}" method="get" style="display: inline;">
+        <input type="hidden" name="userId" th:value="${userId}">
+        <input type="hidden" name="type" value="PRODUCT">
+        <button type="submit" th:classappend="${type == 'PRODUCT'} ? 'selected' : ''">상품</button>
+    </form>
+    <form th:action="@{/wishlist}" method="get" style="display: inline;">
+        <input type="hidden" name="userId" th:value="${userId}">
+        <input type="hidden" name="type" value="MARKET">
+        <button type="submit" th:classappend="${type == 'MARKET'} ? 'selected' : ''">마켓</button>
+    </form>
+</div>
+
+<!-- 선택된 찜 목록 -->
 <div>
-    <h2>내 찜 목록</h2>
-    <table border="1">
+    <h2 th:text="'현재 찜 목록 타입: ' + ${type}"></h2>
+    <table>
         <thead>
         <tr>
             <th>제품 이름</th>
-            <th>가격</th>
+            <th>해시태그</th>
             <th>작업</th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="item : ${wishlistItems}">
-            <td th:text="${item.product.name}">제품 이름</td> <!-- 제품 이름 표시 -->
-            <td th:text="${item.product.description}">상세 설명</td> <!-- 제품 설명 -->
-            <td th:text="${item.product.price}">가격</td> <!-- 제품 가격 -->
+            <td th:text="${item.product.name}">제품 이름</td>
+            <td th:text="${item.hashtags}">해시태그</td>
             <td>
                 <form th:action="@{/wishlist/remove/{itemId}(itemId=${item.id})}" method="post">
                     <input type="hidden" name="userId" th:value="${userId}">
+                    <input type="hidden" name="type" th:value="${type}">
                     <button type="submit">삭제</button>
                 </form>
             </td>
@@ -36,15 +96,18 @@
 </div>
 
 <!-- 찜 추가 -->
-<div>
-    <h2>찜 추가</h2>
+<div class="form-container">
+    <h2>찜 추가 테스트</h2>
     <form th:action="@{/wishlist/add}" method="post">
         <input type="hidden" name="userId" th:value="${userId}">
+        <input type="hidden" name="type" th:value="${type}">
         <label for="productId">제품 선택:</label>
         <select id="productId" name="productId" required>
-            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}">제품 이름</option>
+            <option th:each="product : ${products}" th:value="${product.id}" th:text="${product.name}">
+                제품 이름
+            </option>
         </select>
-        <button type="submit">찜하기</button>
+        <button type="submit">추가</button>
     </form>
 </div>
 </body>

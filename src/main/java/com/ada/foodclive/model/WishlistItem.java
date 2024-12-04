@@ -15,11 +15,18 @@ public class WishlistItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", nullable = false)
-    private User user; // 찜한 사용자와 연결
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE) // Cascade 설정
+    @JoinColumn(name = "product_id", nullable = false)
+    private Product product;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id", nullable = false)
-    private Product product; // Product와 연결
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "wishlist_type")
+    private WishlistType wishlistType;
+
+    private String hashtags;
 }
+

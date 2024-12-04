@@ -1,22 +1,23 @@
-<!--제품 추가 페이지-->
-
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>제품 추가</title>
 </head>
 <body>
 <h1>제품 추가</h1>
-<form th:action="@{/products/add}" method="post">
+<form th:action="@{/products/add}" method="post" th:object="${product}">
     <label for="name">제품명:</label>
-    <input type="text" id="name" name="name" required>
+    <input type="text" id="name" name="name" th:field="*{name}" required>
     <br>
     <label for="description">설명:</label>
-    <input type="text" id="description" name="description">
+    <input type="text" id="description" name="description" th:field="*{description}">
     <br>
     <label for="price">가격:</label>
-    <input type="number" id="price" name="price" step="0.01" required>
+    <input type="number" id="price" name="price" th:field="*{price}" step="0" required>
+    <br>
+    <label for="hashtags">해시태그:</label>
+    <input type="text" id="hashtags" name="hashtags" th:field="*{hashtags}">
     <br>
     <button type="submit">추가</button>
 </form>
